@@ -9,14 +9,23 @@ function App() {
 
 const addValue = ()=>{
   // counter = counter + 1
-  setCount(counter+1)
-  console.log("clicked ",counter);
-}
-
-const removeValue = ()=>{
-  setCount (counter - 1)
-  console.log("removed",counter);
+  if (counter<20) {
+    setCount(counter+1)
+  }
+  else{
+    console.log("no more further");
+    
+  }
   
+}
+const removeValue = ()=>{
+  if (counter > 0) {
+    setCount(counter - 1)
+  }
+  else{
+    console.log("stay positive");
+    
+  }
 }
   return (
     <>
