@@ -1,8 +1,6 @@
 import { useState,useCallback } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
-import { use } from 'react'
 
 function App() {
   const [length,setlength] = useState(10)
@@ -33,12 +31,13 @@ function App() {
       
       <h1 className='text-white text-center my-3'>PassWord Generator</h1>
       
-      <div className='flex shadow rounded-lg overflow-hidden mb-4'><input typr = "text"
+      <div className='flex shadow rounded-lg overflow-hidden mb-4'><input type = "text"
       value ={password}
       className='outline-none w-full py-1 px-3'
       placeholder = "Password"
-      readOnly>
-        </input>
+      readOnly/>
+
+      <button className='outline-none bg-blue-700 text-white shrink-0'>copy</button>
       </div>
     </div>
     </>
