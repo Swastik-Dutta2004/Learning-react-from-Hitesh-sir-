@@ -1,4 +1,4 @@
-import { useState,useCallback } from 'react'
+import { useState,useCallback,useEffect } from 'react'
 
 import './App.css'
 
@@ -18,13 +18,17 @@ function App() {
     if(numAllowed) str += "0123456789"
     if(charAllowed) str +="!@#$%^&*()-_=+\|[]{};:/?.>"
 
-    for (let i= 1; index <= array.length; i++) {
+    for (let i= 1; i<=length; i++) {
     let char = Math.floor(Math.random() * str.length + 1)
-      pass = str.charAt(char)
+      pass += str.charAt(char)
     }
       setpassword(pass)
 
   },[length,numAllowed,charAllowed,setpassword])
+
+  useEffect(() => {
+    passwordGenerator()
+  }, [length, numAllowed, charAllowed, passwordGenerator])
   return (
     <>
     <div className='w-full max-w-md mx-auto shadow-md rounded-lg px-10 py-0.5 text-orange-500 bg-gray-700'>
@@ -46,21 +50,35 @@ function App() {
           min={6}
           max={100}
           value={length}
-          className='cursor-pointer'onChange={(e) => {setlength(e.target.value)}}
+          className='cursor-pointer'
+          onChange={(e) => {setlength(e.target.value)}}
           />
           <label>Length:{length}</label>
-
+          <div/>
+            <div className='flex items-center gap-x-1'>
+            <input
+            type="checkbox"
+            defaultChecked={numAllowed}
+            id="numberInput"
+            onChange={() => {
+              setnumAllowed((prev) => !prev);
+            }}
+            />
+            
+          </div>
            <label htmlFor='numberInput'>Number </label>
 
         </div>
-          <div className='flex item-center gap-x-1'><input 
-          type ="checkbox"
-          defultChecked ={numAllowed}
-          id = "numberInput"
-          onChange = {()=>{
-            setnumAllowed((prev)=>!prev);
+          <div className='flex item-center gap-x-1'>
+            <input 
+            type ="checkbox"
+            defultChecked ={charAllowed}
+            id = "chracterInput"
+            onChange = {()=>{
+              setnumAllowed((prev)=>!prev);
           }}
             />
+            
 
             <label htmlFor='characterInput'>characters</label>
             
