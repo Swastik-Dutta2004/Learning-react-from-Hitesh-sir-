@@ -1,4 +1,4 @@
-import { useState,useCallback,useEffect } from 'react'
+import { useState,useCallback,useEffect,useRef} from 'react'
 
 import './App.css'
 
@@ -11,6 +11,7 @@ function App() {
 
   const [password,setpassword] = useState("")
 
+  const PasswordRef = useRef(null)
   const passwordGenerator = useCallback(() =>{
     let pass = ""
     let str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -26,6 +27,12 @@ function App() {
 
   },[length,numAllowed,charAllowed,setpassword])
 
+  const copyPasswordToClipboard = useCallback (() =>{
+    PasswordRef.current?.select();
+    // PasswordRef.current?.setSelectionRange(0,3)
+    window.navigator.clipboard.writeText(password)
+  },[password])
+
   useEffect(() => {
     passwordGenerator()
   }, [length, numAllowed, charAllowed, passwordGenerator])
@@ -35,48 +42,55 @@ function App() {
       
       <h1 className='text-white text-center my-3 text-2xl'>PassWord Generator</h1>
       
-      <div className='flex shadow rounded-lg overflow-hidden mb-4 bg-white'><input type = "text"
-      value ={password}
-      className='outline-none w-full py-1 px-3'
-      placeholder = "Password"
-      readOnly/>
+      <div className='flex shadow rounded-lg overflow-hidden mb-4 bg-white'>
+      <input 
+        type = "text"
+        value ={password}
+        className='outline-none w-full py-1 px-3'
+        placeholder = "Password"
+        readOnly
+        ref={PasswordRef}
+      />
 
-      <button className='outline-none bg-blue-400 text-white shrink-0'>copy</button>
+      <button
+      onClick={copyPasswordToClipboard}
+      className='outline-none bg-blue-400 text-white shrink-0px-3 py-0.5'>copy</button>
       </div>
       <div className='flex text-sm gpa-x-2'>
         <div className='flex items-center gap-x-1'>
+
           <input 
-          type= "range"
-          min={6}
-          max={100}
-          value={length}
-          className='cursor-pointer'
-          onChange={(e) => {setlength(e.target.value)}}
+            type= "range"
+            min={6}
+            max={20}
+            value={length}
+            className='cursor-pointer'
+            onChange={(e) => {setlength(e.target.value)}}
           />
           <label>Length:{length}</label>
           <div/>
-            <div className='flex items-center gap-x-1'>
+            <div className='flex items-center gap-x-6'>
             <input
-            type="checkbox"
-            defaultChecked={numAllowed}
-            id="numberInput"
-            onChange={() => {
+              type="checkbox"
+              defaultChecked={numAllowed}
+              id="numberInput"
+              onChange={() => {
               setnumAllowed((prev) => !prev);
-            }}
+              }}
             />
             
           </div>
            <label htmlFor='numberInput'>Number </label>
 
         </div>
-          <div className='flex item-center gap-x-1'>
+          <div className='flex item-center gap-x-'>
             <input 
-            type ="checkbox"
-            defultChecked ={charAllowed}
-            id = "chracterInput"
-            onChange = {()=>{
-              setnumAllowed((prev)=>!prev);
-          }}
+              type ="checkbox"
+              defultChecked ={charAllowed}
+              id = "chracterInput"
+              onChange = {()=>{
+                setnumAllowed((prev)=>!prev);
+                }}
             />
             
 
