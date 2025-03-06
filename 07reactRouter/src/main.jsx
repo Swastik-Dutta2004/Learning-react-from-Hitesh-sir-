@@ -7,7 +7,7 @@ import Home from './components/home/home.jsx'
 import About from './components/About/About.jsx'
 import ReactDOM from 'react-dom/client'
 import Layout from './Layout.jsx'
-import Contact from './components/contact/contact.jsx'
+import Contact from './components/Contact/Contact.jsx'
 import User from './components/User/User.jsx'
 
 // const router = createBrowserRouter([
@@ -37,6 +37,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path='About' element={<About/>}/>
     <Route path='Contact' element={<Contact/>}/>
     <Route path='User/:Userid' element={<User/>}/>
+    <Route path='github' element={<github/>}/>
      </Route>
   )
 )
