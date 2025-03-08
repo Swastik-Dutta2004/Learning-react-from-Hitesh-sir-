@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 
 import './App.css'
 import UserContextProvider from './Context/UserContextProvider'
+import Login from './Component/Login'
+import Profile from './Component/Profile'
 
 function App() {
   
@@ -11,6 +13,8 @@ function App() {
    
    <UserContextProvider>
    <h1>React with Swastik</h1>
+   <Login/>
+   <Profile/>
    </UserContextProvider>
     
   )
