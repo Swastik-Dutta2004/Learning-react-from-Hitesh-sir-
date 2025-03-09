@@ -7,7 +7,7 @@ export const ThemeContext = createContext({
    
 })
 
-export const themePorvider = ThemeContext.Provider
+export const ThemePorvider = ThemeContext.Provider
 
 export default function useTheme(){
     return useContext(ThemeContext)
