@@ -89,13 +89,20 @@ export class Service{
         }
         async deleteFile (fileid){
             try {
-                await this.bucket.deleteFile(conf.appwriteBucketI,fileid,)
+                await this.bucket.deleteFile(conf.appwriteBucketId,fileid,)
                 return true;
             } catch (error) {
                 console.log("Appwrite serive :: GetCurrentUser ::error", error);
                 return false;
             }
         }
+        
+        getfilePreview(fileid){
+            return this.bucket.getFilePreview(
+                conf.appwriteBucketId,fileid,
+            )
+        }
+
 }
 
 const service = new Service()
