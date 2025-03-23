@@ -76,7 +76,17 @@ export class Service{
                 return false;
             }
         }
-       
+        async uplodeFile (file){
+            try {
+                return await this.bucket.createFile(conf.appwriteBucketId,
+                    ID.unique(),
+                    file,
+                )
+            } catch (error) {
+                console.log("Appwrite serive :: GetCurrentUser ::error", error);
+                return false
+            }
+        }
 }
 
 const service = new Service()
