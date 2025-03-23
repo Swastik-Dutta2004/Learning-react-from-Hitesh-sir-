@@ -52,6 +52,18 @@ export class Service{
                 return false;
             }
         }
+        async getPost(slug){
+            try {
+                return await this.databases.getDocument(
+                    conf.appwriteDataBaseId,
+                    conf.appwriteCollectionId,
+                    slug
+                )
+            } catch (error) {
+                console.log("Appwrite serive :: GetCurrentUser ::error", error);  
+                return false
+            }
+        }
         
 }
 
