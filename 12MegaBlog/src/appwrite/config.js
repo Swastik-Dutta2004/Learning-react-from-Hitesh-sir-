@@ -39,6 +39,19 @@ export class Service{
                 console.log("Appwrite serive :: GetCurrentUser ::error", error);
             }
         }
+        async deletePost (slug){
+            try {
+               await this.databases.deleteDocument(
+                conf.appwriteDataBaseId,
+                conf.appwriteCollectionId,
+                slug
+               ) 
+               return true;
+            } catch (error) {
+                console.log("Appwrite serive :: GetCurrentUser ::error", error);  
+                return false;
+            }
+        }
         
 }
 
