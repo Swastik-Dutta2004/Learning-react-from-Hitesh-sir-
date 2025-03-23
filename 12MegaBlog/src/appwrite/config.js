@@ -21,13 +21,49 @@ export class Service{
                conf.appwriteDataBaseId,
                conf.appwriteCollectionId,
                slug,
-                {title, slug,content,featureImage,status,userId}
+                {title,content,featureImage,status,userId}
               )  
             } catch (error) {
                 console.log("Appwrite serive :: GetCurrentUser ::error", error);
             }
         }
-        
+        async updatePost (slug,{title,content,featureImage,status,userId}){
+            try {
+              return await this.databases.updateDocument(
+                conf.appwriteDataBaseId,
+                conf.appwriteCollectionId,
+                slug,
+                {title,content,featureImage,status,}
+              )  
+            } catch (error) {
+                console.log("Appwrite serive :: GetCurrentUser ::error", error);
+            }
+        }
+        async deletePost (slug){
+            try {
+               await this.databases.deleteDocument(
+                conf.appwriteDataBaseId,
+                conf.appwriteCollectionId,
+                slug
+               ) 
+               return true;
+            } catch (error) {
+                console.log("Appwrite serive :: GetCurrentUser ::error", error);  
+                return false;
+            }
+        }
+        async getPost(slug){
+            try {
+                return await this.databases.getDocument(
+                    conf.appwriteDataBaseId,
+                    conf.appwriteCollectionId,
+                    slug
+                )
+            } catch (error) {
+                console.log("Appwrite serive :: GetCurrentUser ::error", error);  
+                return false
+            }
+        }
 }
 
 const service = new Service()
