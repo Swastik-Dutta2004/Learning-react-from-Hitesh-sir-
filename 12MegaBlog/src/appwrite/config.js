@@ -64,7 +64,19 @@ export class Service{
                 return false
             }
         }
-        
+        async getPosts(queries = [Query.equal("status","active")]){
+            try {
+              return await this.databases.listDocuments(
+                conf.appwriteDataBaseId,
+                conf.appwriteCollectionId,
+                queries,
+              )  
+            } catch (error) {
+                console.log("Appwrite serive :: GetCurrentUser ::error", error);
+                return false;
+            }
+        }
+       
 }
 
 const service = new Service()
