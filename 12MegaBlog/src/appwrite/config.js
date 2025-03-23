@@ -27,6 +27,18 @@ export class Service{
                 console.log("Appwrite serive :: GetCurrentUser ::error", error);
             }
         }
+        async updatePost (slug,{title,content,featureImage,status,userId}){
+            try {
+              return await this.databases.updateDocument(
+                conf.appwriteDataBaseId,
+                conf.appwriteCollectionId,
+                slug,
+                {title,content,featureImage,status,}
+              )  
+            } catch (error) {
+                console.log("Appwrite serive :: GetCurrentUser ::error", error);
+            }
+        }
         
 }
 
