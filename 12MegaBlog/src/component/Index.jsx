@@ -1,7 +1,7 @@
 import header from "./compnent/Header/Header";
 import Footer from "./component/Footer/Footer";
-import container from './container/container'
+import Container from './container/Container'
 import Logo from "./Logo";
 import LogoutBtn from "./Header/LogoutBtn";
 
-export {header,Footer,container,Logo,LogoutBtn}
+export {header,Footer,Container,Logo,LogoutBtn}
